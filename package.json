@@ -1,0 +1,22 @@
+{
+  "name": "node-express-request-routes",
+  "version": "1.0.0",
+  "description": "### Intro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bbouley/node-express-request-routes.git"
+  },
+  "author": "Bradley Bouley <bradleyjamesbouley@gmail.com> (www.bbouley.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bbouley/node-express-request-routes/issues"
+  },
+  "homepage": "https://github.com/Bbouley/node-express-request-routes#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
