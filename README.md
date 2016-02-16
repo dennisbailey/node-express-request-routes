@@ -4,6 +4,8 @@
 
 Today we'll be refactoring routes that we've built using node.js, and start using express.js for our routing. [Express.js](http://expressjs.com/) is a node.js web framework that abstracts out parts of node to make life much much simpler, without losing any of the functionality we get with node. It also adds a bunch of HTTP utility methods as well as gives us access to a ton of middleware.
 
+As you're going through this tutorial, make sure to take note of any questions you have during the process and we can go through them at each break point.
+
 ### Middleware
 
 Middleware is any number of functions that are called by Express.js before your final request handler. What that means is that whenever you get a request hitting your server, it first goes through any middleware functions you might have, before it hits the route you've defined. This might be a little confusing, so let's start building an app with express and actually get an example of what's going
@@ -229,6 +231,8 @@ So now we are getting a request body through with a moviename, and we can access
 Build out the rest of the POST route. You will need to take the data passed through to the route and send a request to OMDB. How would you deal with a movie with spaces in it? Once you have gotten the data back from OMDB, send the imdbRating back down to the client.
 
 HINT - You may need to use JSON.parse function to access the data you will need...
+
+## Break Point 6
 
 
 
