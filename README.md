@@ -234,9 +234,16 @@ HINT - You may need to use JSON.parse function to access the data you will need.
 
 ## Break Point 6
 
+### Exercises
 
+1. Build a route that takes two numbers and an operator, and will send the user back the result of that function.
 
+e.g. '/12/add/15' should return 27
+     '10/divide/5' should return 2
 
+2. Build a route that will take in a search paramater and use the [Giphy API](https://github.com/Giphy/GiphyAPI) to return a gif matched to that search term. Build one route that will take in the search term as a url parameter, and one that takes in information in a POST request body.
+
+3. SUPER COMBO TIME!! Try using both [OMDB](http://www.omdbapi.com/) and [Giphy](https://github.com/Giphy/GiphyAPI) to build a route that searches for a film, then uses the information coming back from OMDB to search for a GIF of that film. Then send that GIF link back to the client. Complex...
 
 
 
