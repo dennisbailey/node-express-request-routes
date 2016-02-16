@@ -1,8 +1,39 @@
 var express = require('express');
+var request = require('request');
+var bodyParser = require('body-parser');
+
 var app = express();
 
-app.get('/', function(request, response) {
+app.use( bodyParser.json() );
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now());
+  next();
+});
+
+app.get('/', function(req, res) {
     res.send('testing home route');
+});
+
+app.get('/movie', function(req, res) {
+    request.get('http://www.omdbapi.com/?t=the+big+lebowski', function(error, response, body) {
+        res.send(body);
+    });
+});
+
+app.get('/movie/:moviename', function(req, res) {
+    var url = 'http://www.omdbapi.com/?t=' + req.params.moviename;
+    request.get(url, function(error, response, body) {
+        res.send(body);
+    });
+});
+
+app.post('/movies', function(req, res) {
+    console.log(req.body);
+    res.send(req.body);
 });
 
 app.listen(8080, function() {
