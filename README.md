@@ -226,7 +226,9 @@ So now we are getting a request body through with a moviename, and we can access
 
 ### Code stuff!!!
 
-Build out the rest of the POST route. You will need to take the data passed through to the route and send a request to OMDB. How would you deal with a movie with spaces in it? Once you have gotten the data back from OMDB, send the movie rating back down to the client.
+Build out the rest of the POST route. You will need to take the data passed through to the route and send a request to OMDB. How would you deal with a movie with spaces in it? Once you have gotten the data back from OMDB, send the imdbRating back down to the client.
+
+HINT - You may need to use JSON.parse function to access the data you will need...
 
 
 

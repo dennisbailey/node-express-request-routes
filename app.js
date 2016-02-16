@@ -32,8 +32,13 @@ app.get('/movie/:moviename', function(req, res) {
 });
 
 app.post('/movies', function(req, res) {
-    console.log(req.body);
-    res.send(req.body);
+    var movieStr = req.body.moviename.replace(' ', '+');
+    var url = 'http://www.omdbapi.com/?t=' + movieStr;
+    request.get(url, function(error, response, body) {
+        var jsonBody = JSON.parse(body);
+        console.log(jsonBody.imdbRating)
+        res.send(jsonBody.imdbRating);
+    });
 });
 
 app.listen(8080, function() {
