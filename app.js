@@ -36,7 +36,6 @@ app.post('/movies', function(req, res) {
     var url = 'http://www.omdbapi.com/?t=' + movieStr;
     request.get(url, function(error, response, body) {
         var jsonBody = JSON.parse(body);
-        console.log(jsonBody.imdbRating)
         res.send(jsonBody.imdbRating);
     });
 });

@@ -221,7 +221,7 @@ $ curl --data "moviename=zoolander" http://localhost:8080/movies
 Our console should log
 
 ```sh
-{"moviename":"zoolander"}%
+{"moviename":"zoolander"}
 ```
 
 So now we are getting a request body through with a moviename, and we can access that in the route. The next step is to build another request to the OMDB server that will take that movie name and then send down the resulting data back to our client.
