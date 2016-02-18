@@ -212,7 +212,7 @@ So you can see that each route will still return the same thing as before, but n
 
 ### Finishing our POST request
 
-Now we've covered middleware, let's try our POST route again. We'll need to do this using either Postman, or CURL. With curl, the command to send data in a POST request is as follows
+Now we've covered middleware, let's try our POST route again. We'll need to do this using either Postman, or CURL. With CURL, the command to send data in a POST request is as follows
 
 ```sh
 $ curl --data "moviename=zoolander" http://localhost:8080/movies
