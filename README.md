@@ -8,7 +8,7 @@ As you're going through this tutorial, make sure to take note of any questions y
 
 ### Middleware
 
-Middleware is any number of functions that are called by Express.js before your final request handler. What that means is that whenever you get a request hitting your server, it first goes through any middleware functions you might have, before it hits the route you've defined. This might be a little confusing, so let's start building an app with express and actually get an example of what's going
+Middleware is any number of functions that are called by Express.js before your final request handler. What that means is that whenever you get a request hitting your server, it first goes through any middleware functions you might have, before it hits the route you've defined. This might be a little confusing, so let's start building an app with express and actually get an example of what's going on.
 
 ### Node server
 
@@ -52,7 +52,7 @@ app.listen(8080, function() {
 });
 ```
 
-So line by line, what this is doing is requiring in the Express module, then creating a new variable called app and assigning it to 'express()' this line allows us to call all of the express functions on our variable app, which is exactly what we do in the next section. It looks very similiar to the node server, it has just abstracted out the need for the http module, and made things a little more readable. What happens when we run the app?
+So line by line, what this is doing is requiring in the Express module, then creating a new variable called app and assigning it to 'express()'. This line allows us to call all of the express functions on our variable 'app', which is exactly what we do in the next line. It looks very similiar to the node server, it has just abstracted out the need for the http module, and made things a little more readable. What happens when we run the app?
 
 ```sh
 $ node app.js
@@ -78,7 +78,7 @@ app.listen(8080, function() {
 });
 ```
 
-Here we have our first route. What this route is doing is responding to any GET request to our home route. That's what is defined in the parentheses as '/'. So if we navigate to **localhost:8080/** We should see a string displayed on our page, 'testing home route'. The node app will not return a response until you call res.send or res.render.Every time we hit that route, it will send the same string back. Side note - req is shorthand for request and res is shorthand for response.
+Here we have our first route. What this route is doing is responding to any GET request to our home route. That's what is defined in the parentheses as '/'. So if we navigate to **localhost:8080/** We should see a string displayed on our page, 'testing home route'. The node app will not return a response until you call 'res.send' or 'res.render'. If you don't have one of these, then the browser will keep spinning if you enter that url. Every time we hit that route, it will send the same string back. Side note - req is shorthand for request and res is shorthand for response.
 
 ### Code Stuff!!!
 
@@ -100,7 +100,7 @@ Then let's require request at the top of our app.js file.
 var request = require('request');
 ```
 
-This will allow us to make server-side api calls. So let's build a new route that when we hit, it will make a call to the omdb movie api. To start with, we'll just find a movie and return it to the user. Let's go with the Big Lebowski.
+This will allow us to make server-side api calls. So let's build a new route that when we hit, it will make a call to the OMDB movie api. To start with, we'll just find a movie and return it to the user. Let's go with the Big Lebowski.
 
 ```js
 app.get('/movie', function(req, res) {
@@ -116,18 +116,18 @@ Now our route is a little more complicated. What happens here is that when the s
 
 ### More Dynamic
 
-So there's currently a route built that will return a movie, however, as great a movie as that is, really we want a more dynamic route. So let's look at how we can edit this route to find a movie that we give it. We're going to pass the movie name into our url as a parameter. So how do we process that request on the server side?
+So there's currently a route built that will return a movie, however, as great a movie as the Big Lebowski is, really we want a more dynamic route. So let's look at how we can edit this route to find a movie that we give it. We're going to pass the movie name into our url as a parameter. So how do we process that request on the server side? Let's start with this.
 
 ```js
 app.get('/movie/:moviename', function(req, res) {
     console.log(req.params);
-    res.send(req.params)
+    res.send(req.params);
 });
 ```
 
 We can set up a route with a colon in it. This means that what comes after the colon can change. If we console log this, and then send it to the client side, we can log whatever is being entered after the colon. For example, if we hit the route **localhost:8080/movie/the+big+lebowski** we should see an object displayed on the page, with a key moviename, and a value of the+big+lebowski. Note the the '+' signs indicate spaces in a url. req.params is the parameter request. It's what's being passed into the url.
 
-So with the omdb api we can now dynamically search by a movie name that we pass into our url.
+So with the OMDB api we can now dynamically search by a movie name that we pass into our url.
 
 ```js
 app.get('/movie/:moviename', function(req, res) {
@@ -144,7 +144,7 @@ Here, we are creating our OMDB api url string dynamically by adding whatever the
 
 ### Middleware Continued
 
-So far we have only covered GET requests. Passing information through the URL is certainly one way of getting information from the client, to the server side, but we can also use POST requests to do this. a POST request also allows us to send more data if we wanted to. So how do we write a POST request?
+So far we have only covered GET requests. Passing information through the URL is certainly one way of getting information from the client, to the server side, but we can also use POST requests to do this. A POST request also allows us to send more data if we wanted to. So how do we write a POST request?
 
 ```js
 app.post('/movies', function(req, res) {
@@ -153,7 +153,7 @@ app.post('/movies', function(req, res) {
 });
 ```
 
-This is correctly written out, but if we actually hit this endpoint, we aren't returned anything. The problem is that we're missing some middleware. What we need is a way of parsing data before it gets to each request. In this particular instance, we will be using [bodyparser](https://www.npmjs.com/package/body-parser). This populates the request body with the information we have sent it, and then allow us to access that information in our routes. First, install bodyparser using terminal.
+This is correctly written out, but if we actually hit this endpoint, we aren't returned anything. The problem is that we're missing some middleware. What we need is a way of parsing data before it gets to each request. In this particular instance, we will be using [bodyparser](https://www.npmjs.com/package/body-parser). This populates the request body object with the information we have sent it, and then allow us to access that information in our routes. First, install bodyparser using terminal.
 
 ```sh
 $ npm install --save body-parser
@@ -203,7 +203,7 @@ app.use(function (req, res, next) {
 });
 ```
 
-Looking solely at the third app.use function, each time we hit any endpoint, we should see a console log with time - and the current time. The 'Next()' line indicates that once the middleware function has been fired off, then move onto either the next middleware function or the route itself. Try hitting a route, and check what gets logged in the console.
+Looking solely at the third app.use function, each time we hit any endpoint, we should see a console log with 'Time :' and the current time. The 'Next()' line indicates that once the middleware function has been fired off, then move onto either the next middleware function or the route itself. Try hitting a route, and check what gets logged in the console.
 
 So you can see that each route will still return the same thing as before, but now every time we hit a route we are also logging something to the console. The middleware acts before the request hits our routes, but it doesn't change what's going on with the routes either. It just does it's thing, then allows the request to continue on its way.
 
@@ -236,14 +236,9 @@ HINT - You may need to use JSON.parse function to access the data you will need.
 
 ### Exercises
 
-1. Build a route that takes two numbers and an operator, and will send the user back the result of that function.
+1. Build a route that will take in a search paramater and use the [Giphy API](https://github.com/Giphy/GiphyAPI) to return a gif matched to that search term. Build one route that will take in the search term as a url parameter, and one that takes in information in a POST request body.
 
-e.g. '/12/add/15' should return 27
-     '10/divide/5' should return 2
-
-2. Build a route that will take in a search paramater and use the [Giphy API](https://github.com/Giphy/GiphyAPI) to return a gif matched to that search term. Build one route that will take in the search term as a url parameter, and one that takes in information in a POST request body.
-
-3. SUPER COMBO TIME!! Try using both [OMDB](http://www.omdbapi.com/) and [Giphy](https://github.com/Giphy/GiphyAPI) to build a route that searches for a film, then uses the information coming back from OMDB to search for a GIF of that film. Then send that GIF link back to the client. Complex...
+1. SUPER COMBO TIME!! Try using both [OMDB](http://www.omdbapi.com/) and [Giphy](https://github.com/Giphy/GiphyAPI) to build a route that searches for a film, then uses the information coming back from OMDB to search for a GIF of that film. Then send that GIF link back to the client. Complex...
 
 
 
